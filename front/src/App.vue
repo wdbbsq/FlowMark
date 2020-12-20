@@ -49,5 +49,4 @@ h1 {
 .head {
     font-weight: bold;
 }
-
 </style>

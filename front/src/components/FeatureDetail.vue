@@ -1,13 +1,21 @@
 <template>
-    <div class="container">
+    <div class="container" @mouseenter="enter" @mouseleave="leave">
         <div class="type">
             <span class="head">Type: </span>{{ type }}
+            <i class="el-icon-edit" 
+                v-if="seen"
+                @click="editFeature"
+            ></i>
         </div>
         <div class="reg">
             <span class="head">reg: </span>{{ reg }}
         </div>
         <div class="description">
             <span class="head">Description: </span>{{ description }}
+            <i class="el-icon-delete" 
+                v-if="seen"
+                @click="deleteFeature"
+            ></i>
         </div>
     </div>
 </template>
@@ -15,10 +23,40 @@
 <script>
 export default {
     name: 'FeatureDetail',
-    props: ['type', 'reg', 'description'],
+    props: ['id', 'type', 'reg', 'description'],
     data () {
         return {
-            msg: ''
+            seen: false,
+        }
+    },
+    methods: {
+        enter() {
+            this.seen = true;
+        },
+        leave() {
+            this.seen = false;
+        },
+        deleteFeature() {
+            console.log(this.id);
+            this.$axios({
+                method: "delete",
+                url: "/feature/" + this.id,
+            })
+            .then(res => {
+                if (res.status == 200) {
+                    // call parent method to refresh
+                    this.$emit("refreshList");
+                }
+                else {
+                    console.log("Delete err!")
+                }
+            })
+            .catch(err => {
+                console.log("Cannot fetch data")
+            })
+        },
+        editFeature() {
+
         }
     }
 }

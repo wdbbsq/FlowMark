@@ -3,15 +3,19 @@
         <div class="searchBar">
 
         </div>
-        <FeatureCreate></FeatureCreate>
+        <FeatureCreate
+            @refreshList="getData"
+        ></FeatureCreate>
+        
         <FeatureDetail
             v-for="feature in features"
             :key="feature._id"
+            :id="feature._id"
             :type="feature.type"
             :reg="feature.reg"
             :description="feature.description"
-        >
-        </FeatureDetail>
+            @refreshList="getData"
+        ></FeatureDetail>
     </div>
 </template>
 
@@ -51,7 +55,7 @@ export default {
             .catch(err => {
                 console.log("Cannot fetch data")
             })
-        }
+        },
     }
 }
 </script>
