@@ -1,18 +1,35 @@
 <template>
     <div class="container">
+        <div class="buttonContainer">
+
+        </div>
         <div class="flow-container">
-            <div class="flow-deatil" ></div>
+            <FlowDetail
+                v-for="flow in flows"
+                :key="flow._id"
+                :time="flow.time"
+                :path="flow.path"
+                :data="flow.data"    
+            ></FlowDetail>
         </div>
     </div>
 </template>
 
 <script>
+import FlowDetail from './FlowDetail'
+
 export default {
     name: 'Flow',
+    components: {
+        FlowDetail,
+    },
     data () {
         return {
-            msg: ''
+            flows: [],
         }
+    },
+    methods: {
+
     }
 }
 </script>

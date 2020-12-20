@@ -7,6 +7,10 @@ const flowSchema = new Schema({
   id: ObjectId,
   data: String,
   time: Number,
+  ipv4_scrip: String,
+  ipv4_dstip: String,
+  tcp_srcport: Number,
+  tcp_dstport: Number,
 });
 
 const featureSchema = new Schema({

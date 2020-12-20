@@ -75,8 +75,4 @@ export default {
     line-height: 18px;
 }
 
-.type {
-    font-weight: 200;
-}
-
 </style>
