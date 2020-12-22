@@ -5,6 +5,7 @@ const flowController = {
     all(req, res) {
         Flow
         .find({})
+        .limit(50)
         .exec((err, Flow) => res.json(Flow));
     },
     byId(req, res) {

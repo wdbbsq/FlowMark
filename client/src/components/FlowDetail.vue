@@ -4,7 +4,7 @@
             <span class="head">Time: </span>{{ time }}
         </div>
         <div class="path">
-            <span class="head">Path: </span>{{ src }} -> {{ dis }}
+            <span class="head">Path: </span>{{ path }}
         </div>
         <div class="data">
             <span class="head">Data: </span>{{ data }}

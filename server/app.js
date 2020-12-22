@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 const api = require('./routes/api');
 
 const mongoose = require('mongoose');
+const tunnel = require('tunnel-ssh');
 
 var app = express();
 
@@ -17,19 +18,51 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // connect to MongoDB
-try {
-    mongoose.connect('mongodb://localhost:27017/test', {
+const config = {
+    username: 'root', 
+    host: '192.168.1.40', 
+    port: 8839, 
+    dstPort: 27017,
+    dstHost: 'localhost',
+    localPort: 27017,
+    localHost: '127.0.0.1',
+    password: 'yangyang123',
+    // keepAlive: true
+}; 
+
+var server = tunnel(config, function (error, server) { 
+    if (error){ 
+        console.log("SSH connection error: " + error); 
+    }
+    else {
+        console.log("SSH connected");
+    }
+
+    mongoose.connect('mongodb://127.0.0.1:27017/netTrafficData', {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });
-    // await mongoose.connect('mongodb://root:yangyang123@192.168.1.40:27017/netTrafficData', { 
-    //   useNewUrlParser: true,
-    //   useUnifiedTopology: true
-    // });
-} 
-catch (error) {
-    console.log('Lost connection to Database.');
-}
+
+    var db = mongoose.connection; 
+    db.on('error', console.error.bind(console, 'DB connection error:')); 
+    db.once('open', function() { 
+        console.log("DB connection successful"); 
+    }); 
+}); 
+
+// try {
+//     // mongoose.connect('mongodb://localhost:27017/test', {
+//     //     useNewUrlParser: true,
+//     //     useUnifiedTopology: true
+//     // });
+//     mongoose.connect('mongodb://root:yangyang123@192.168.1.40:8839/netTrafficData', { 
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true
+//     });
+// } 
+// catch (error) {
+//     console.log('Lost connection to Database.');
+// }
 
 // CORS config here
 app.all('/*', function(req, res, next) {
