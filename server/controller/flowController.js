@@ -5,6 +5,7 @@ const flowController = {
     all(req, res) {
         Flow
         .find({})
+        .select('time ipv4_srcip ipv4_dstip tcp_srcport tcp_dstport data')
         .limit(50)
         .exec((err, Flow) => res.json(Flow));
     },

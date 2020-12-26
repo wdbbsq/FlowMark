@@ -4,7 +4,7 @@
             <span class="head">Time: </span>{{ time }}
         </div>
         <div class="path">
-            <span class="head">Path: </span>{{ path }}
+            <span class="head">Path: </span>{{ ipv4_srcip }}/{{ tcp_srcport }} -> {{ ipv4_dstip }}/{{ tcp_dstport }}
         </div>
         <div class="data">
             <span class="head">Data: </span>{{ data }}
@@ -15,7 +15,7 @@
 <script>
 export default {
     name: 'FlowDetail',
-    props: ['time', 'path', 'data'],
+    props: ['time', 'ipv4_srcip', 'ipv4_dstip', 'tcp_srcport', 'tcp_dstport', 'data'],
     data () {
         return {
             seen: false,
@@ -39,4 +39,8 @@ export default {
     line-height: 18px;
 }
 
+.data {
+    word-break: break-all;
+    white-space: normal;
+}
 </style>

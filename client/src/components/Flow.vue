@@ -8,7 +8,10 @@
                 v-for="flow in flows"
                 :key="flow._id"
                 :time="flow.time"
-                :path="flow.path"
+                :ipv4_srcip="flow.ipv4_srcip"
+                :ipv4_dstip="flow.ipv4_dstip"
+                :tcp_srcport="flow.tcp_srcport"
+                :tcp_dstport="flow.tcp_dstport"
                 :data="flow.data"    
             ></FlowDetail>
         </div>
@@ -36,17 +39,7 @@ export default {
                 url: "/flow"
                 })
                 .then(res => {
-                    let arr = [];
-                    for (let i = 0; i < res.data.length; i++) {
-                        let tmpObj = {
-                            "_id": res.data[i]._id,
-                            "time": res.data[i].time,
-                            "path": res.data[i].ipv4_srcip + "/" + res.data[i].tcp_srcport + " -> " + res.data[i].ipv4_dstip + "/" + res.data[i].tcp_dstport,
-                            "data": res.data[i].data
-                        }
-                        arr.push(tmpObj);
-                    }
-                    this.flows = arr;
+                    this.flows = res.data;
                 })
                 .catch(err => {
                     console.log("Cannot fetch data")

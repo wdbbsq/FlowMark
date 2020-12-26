@@ -30,6 +30,14 @@ const config = {
     // keepAlive: true
 }; 
 
+/**
+ * Use it before connect the DB
+ * ```
+ *  > use admin;
+ *  switched to db admin
+ *  > db.shutdownServer();
+ */
+
 var server = tunnel(config, function (error, server) { 
     if (error){ 
         console.log("SSH connection error: " + error); 
