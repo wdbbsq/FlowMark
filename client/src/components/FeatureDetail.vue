@@ -8,7 +8,7 @@
             ></i>
         </div>
         <div class="reg">
-            <span class="head">reg: </span>{{ reg }}
+            <span class="head">Reg: </span>{{ reg }}
         </div>
         <div class="description">
             <span class="head">Description: </span>{{ description }}

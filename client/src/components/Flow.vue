@@ -2,6 +2,7 @@
     <div class="container">
         <div class="buttonContainer">
             <el-button @click="getAll">{{ btnNote }}</el-button>
+            <el-button @click="mark">开始标注</el-button>
         </div>
         <div class="flow-container">
             <FlowDetail
@@ -20,6 +21,7 @@
 
 <script>
 import FlowDetail from './FlowDetail'
+import bus from "../utils/eventBus";
 
 export default {
     name: 'Flow',
@@ -29,6 +31,7 @@ export default {
     data () {
         return {
             flows: [],
+            features: [],
             btnNote: "获取所有",
         }
     },
@@ -44,7 +47,21 @@ export default {
                 .catch(err => {
                     console.log("Cannot fetch data")
             })
+        },
+        mark(data) {
+            console.log("features" + data);
+            this.features = data;
+            // bus.$on("getFlow", (data) => {
+            //     console.log("features" + data);
+            //     this.features = data;
+            // })
         }
+    },
+    created () {
+        this.$bus.on('getFlow', this.mark);
+    },
+    beforeDestroy () {
+        this.$bus.off('getFlow', this.mark);
     }
 }
 </script>

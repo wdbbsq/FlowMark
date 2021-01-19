@@ -29,7 +29,26 @@ const featureSchema = new Schema({
   description: String,
 });
 
+const contentfeatureSchma = new Schema({
+  id: ObjectId,
+  flow_id: String,
+  hot: String,
+  num_failed_logins: String,
+  logged_in: String,
+  num_compromised: String,
+  root_shell: String,
+  su_attempted: String,
+  num_root: String,
+  num_file_creations: String,
+  num_shells: String,
+  num_access_files: String,
+  num_outbound_cmds: String,
+  is_hot_login: String,
+  is_guest_login: String,
+});
+
 const Flow = model('nettrafficdatas', flowSchema);
 const Feature = model('features', featureSchema);
+const Contentfeature = model('contentfeatures', contentfeatureSchma);
 
-module.exports = { Flow, Feature };
+module.exports = { Flow, Feature, Contentfeature };
