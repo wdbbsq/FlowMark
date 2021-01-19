@@ -48,20 +48,18 @@ export default {
                     console.log("Cannot fetch data")
             })
         },
-        mark(data) {
-            console.log("features" + data);
+        getFeatures(data) {
             this.features = data;
-            // bus.$on("getFlow", (data) => {
-            //     console.log("features" + data);
-            //     this.features = data;
-            // })
+        },
+        mark() {
+            
         }
     },
     created () {
-        this.$bus.on('getFlow', this.mark);
+        this.$bus.on('getFeature', this.getFeatures);
     },
     beforeDestroy () {
-        this.$bus.off('getFlow', this.mark);
+        this.$bus.off('getFeature', this.getFeatures);
     }
 }
 </script>

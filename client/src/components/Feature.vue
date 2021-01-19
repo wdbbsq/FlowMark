@@ -52,14 +52,7 @@ export default {
                 this.reg = "";
                 this.description = "";
 
-                console.log(this.features);
-                this.$bus.emit("getFlow", this.features.map(obj => {
-                    return {
-                        "type": obj.type,
-                        "reg": obj.reg,
-                        "description": obj.description
-                    }
-                }));
+                this.$bus.emit("getFeature", this.features);
             })
             .catch(err => {
                 console.log("Cannot fetch data")
