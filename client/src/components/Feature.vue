@@ -55,7 +55,11 @@ export default {
                 this.$bus.emit("getFeature", this.features);
             })
             .catch(err => {
-                console.log("Cannot fetch data")
+                this.$message({
+                    message: "连接错误，" + err,
+                    type: "warning",
+                    duration: 1500
+                })
             })
         },
     }

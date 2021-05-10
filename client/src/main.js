@@ -12,6 +12,7 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios;
 axios.defaults.baseURL = 'http://localhost:3000/api/v1';
+axios.defaults.timeout = 10000;
 
 /* eslint-disable no-new */
 new Vue({

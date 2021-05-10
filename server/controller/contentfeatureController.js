@@ -7,6 +7,11 @@ const contentfeatureController = {
         .find({})
         .exec((err, Contentfeature) => res.json(Contentfeature));
     },
+    total(req, res) {
+        Contentfeature
+        .estimatedDocumentCount()
+        .exec((err, Contentfeature) => res.json(Contentfeature));
+    },
     byId(req, res) {
         const idParams = req.params.id;
 

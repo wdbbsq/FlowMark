@@ -17,6 +17,11 @@ const flowController = {
         .findOne({ _id: idParams })
         .exec((err, Flow) => res.json(Flow));
     },
+    total(req, res) {
+        Flow
+        .estimatedDocumentCount()
+        .exec((err, Flow) => res.json(Flow));
+    },
     create(req, res) {
         const requestBody = req.body;
         const newFlow = new Flow(requestBody);

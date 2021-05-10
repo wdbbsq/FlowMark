@@ -5,6 +5,7 @@ const featureController = require('../../controller/featureController');
 const contentfeatureController = require('../../controller/contentfeatureController');
 
 router.get('/flow', flowController.all);
+router.get('/flow/total', flowController.total);
 router.get('/flow/:id', flowController.byId);
 router.post('/flow', flowController.create);
 router.put('/flow/:id', flowController.update);
@@ -17,6 +18,7 @@ router.put('/feature/:id', featureController.update);
 router.delete('/feature/:id', featureController.remove);
 
 router.get('/contentfeature', contentfeatureController.all);
+router.get('/contentfeature/total', contentfeatureController.total);
 router.get('/contentfeature/:id', contentfeatureController.byId);
 router.post('/contentfeature', contentfeatureController.create);
 router.put('/contentfeature/:id', contentfeatureController.update);

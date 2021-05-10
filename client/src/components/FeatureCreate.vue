@@ -104,7 +104,7 @@ export default {
                     lable: "is_guest_login",
                     description: "若是guest 登录则为1，否则为0，离散，0或1",
                 },
-],
+            ],
             type: "",
             reg: "",
             description: "",
@@ -140,11 +140,19 @@ export default {
                     this.description = "";
                 }
                 else {
-                    console.log("Insert err!")
+                    this.$message({
+                        message: "插入失败",
+                        type: "warning",
+                        duration: 1500
+                    })
                 }
             })
             .catch(err => {
-                console.log("Cannot fetch data")
+                this.$message({
+                    message: "连接错误，" + err,
+                    type: "warning",
+                    duration: 1500
+                })
             })
         }
     }
